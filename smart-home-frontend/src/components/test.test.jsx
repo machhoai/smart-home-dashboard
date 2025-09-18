@@ -53,7 +53,7 @@ const Test = () => {
                     <div className="flex gap-5 flex-wrap w-full h-44">
                         <div className="w-96 flex-grow-0 h-full ">
                             <GlassSurface
-                                displace={0.5}
+                                displace={1.5}
                                 distortionScale={-150}
                                 redOffset={5}
                                 greenOffset={15}
@@ -76,7 +76,7 @@ const Test = () => {
                         </div>
                         <div className="flex-grow h-full">
                             <GlassSurface
-                                displace={0.5}
+                                displace={1.5}
                                 distortionScale={-150}
                                 redOffset={5}
                                 greenOffset={15}
@@ -115,7 +115,7 @@ const Test = () => {
                             </GlassSurface>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
