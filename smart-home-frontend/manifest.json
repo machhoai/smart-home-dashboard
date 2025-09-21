@@ -1,0 +1,7 @@
+{
+    "name": "Dashboard",
+    "short_name": "Dashboard",
+    "display": "standalone",
+    "background_color": "#22d3ee",
+    "theme_color": "#22d3ee"
+}
