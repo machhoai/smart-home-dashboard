@@ -52,8 +52,7 @@ const Test = () => {
                 <div className=" flex flex-col w-full h-full gap-5">
                     <div className="flex gap-5 flex-wrap w-full h-44">
                         <div className="w-96 flex-grow-0 h-full ">
-                            <span className="flex items-center bg-gray-700 bg-opacity-50 backdrop-blur-md rounded-3xl border-gray-500 border gap-3 h-full w-full p-5 px-7 justify-between"
-                            >
+                            <span className="glass-card flex items-center gap-3 !h-full !w-full p-5 justify-between">
                                 <img src="/weather/sn04.png" className="h-full" alt="" />
                                 <span className="flex flex-col items-end justify-between h-full">
                                     <p className="text-lg font-light flex gap-2 items-center"><Navigation size={16} /> Nhà Bè</p>
@@ -64,8 +63,8 @@ const Test = () => {
                                 </span>
                             </span>
                         </div>
-                        <div className="flex-grow h-full">
-                            <span className="flex items-center gap-3 h-full w-full p-5 px-7 justify-between bg-gray-700 bg-opacity-50 backdrop-blur-md rounded-3xl border-gray-500 border">
+                        <div className="flex-grow h-full ">
+                            <span className="flex glass-card items-center gap-3 h-full w-full p-5 justify-between">
                                 <span className="flex flex-col items-center justify-between h-full">
                                     <p>Hôm nay</p>
                                     <img src="/weather/sn04.png" className="h-1/2" alt="" />
