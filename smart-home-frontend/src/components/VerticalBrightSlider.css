@@ -1,0 +1,84 @@
+.vbs-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.02);
+    touch-action: none;
+    justify-content: center;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    /* prevent scrolling while dragging */
+}
+
+/* base subtle layer under fills (can be blurred background) */
+.vbs-base {
+    position: absolute;
+    width: 100%;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.02));
+    filter: blur(0.3px);
+    pointer-events: none;
+}
+
+/* top fill: from top to thumb center */
+.vbs-fill-top {
+    width: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* height set inline */
+    pointer-events: none;
+}
+
+/* bottom fill: from thumb center to bottom */
+.vbs-fill-bottom {
+    width: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+/* icon at top */
+.vbs-icon {
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    opacity: 0.95;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* thumb */
+.vbs-thumb {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+    transition: transform 0.06s ease;
+    touch-action: none;
+}
+
+/* slightly scale when dragging */
+.vbs-thumb.dragging {
+    transform: translate(-50%, -50%) scale(1.02);
+    cursor: grabbing;
+}

@@ -1,7 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { LoaderCircle, Navigation } from "lucide-react";
-import GlassSurface from './GlassSurface'
+import { LoaderCircle, Navigation, Wifi, WifiOff, } from "lucide-react";
+import RGBSlider from "./RGBSlider";
+import HueSlider from "./HueSlider";
+import ColorTemperatureSlider from "./ColorTemperatureSlider";
+import BrightSlider from "./BrightSlider";
+import VerticalBrightSlider from "./VerticalBrightSlider";
 
 const Test = () => {
     const [time, setTime] = useState(
@@ -49,8 +53,8 @@ const Test = () => {
                     <h1 className="text-3xl">{time}</h1>
                     <p>{date}</p>
                 </div>
-                <div className=" flex flex-col w-full h-full gap-5">
-                    <div className="flex gap-5 flex-wrap w-full h-44">
+                <div className=" flex flex-col w-full h-full gap-3">
+                    <div className="flex gap-3 flex-wrap w-full h-44">
                         <div className="w-96 flex-grow-0 h-full ">
                             <span className="glass-card flex items-center gap-3 !h-full !w-full p-5 justify-between">
                                 <img src="/weather/sn04.png" className="h-full" alt="" />
@@ -93,7 +97,64 @@ const Test = () => {
                             </span>
                         </div>
                     </div>
-
+                    <div className="flex gap-2 flex-wrap w-full h-full">
+                        <div className="flex flex-col gap-2 w-60">
+                            <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
+                                <span className="flex flex-col justify-between h-full w-full">
+                                    <span className="">
+                                        <span
+                                            className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                            style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                        >
+                                            <img src="/image 1.png" className="icon" alt="" />
+                                        </span>
+                                        <p className="title">Đèn phòng ngủ</p>
+                                    </span>
+                                    <span className="flex flex-col justify-between gap-10">
+                                        <span className="flex justify-evenly items-center text-sm">
+                                            <button>Màu</button>
+                                            |
+                                            <button>Trắng</button>
+                                        </span>
+                                        <span>
+                                            <Wifi size={16} color="white" />
+                                        </span>
+                                    </span>
+                                </span>
+                                <span className="flex gap-2 items-center">
+                                    <VerticalBrightSlider />
+                                    <ColorTemperatureSlider />
+                                </span>
+                            </span>
+                            <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
+                                <span className="flex flex-col justify-between h-full w-full">
+                                    <span className="">
+                                        <span
+                                            className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                            style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                        >
+                                            <img src="/image 1.png" className="icon h-full w-full" alt="" />
+                                        </span>
+                                        <p className="title">Đèn phòng ngủ</p>
+                                    </span>
+                                    <span className="flex flex-col justify-between gap-10">
+                                        <span className="flex justify-evenly items-center text-sm">
+                                            <button>Màu</button>
+                                            |
+                                            <button>Trắng</button>
+                                        </span>
+                                        <span>
+                                            <Wifi size={16} color="white" />
+                                        </span>
+                                    </span>
+                                </span>
+                                <span className="flex gap-2">
+                                    <VerticalBrightSlider />
+                                    <ColorTemperatureSlider />
+                                </span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

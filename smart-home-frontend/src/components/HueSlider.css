@@ -1,0 +1,47 @@
+.hue-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 300px;
+    border-radius: 9999px;
+    /* bo tròn full */
+    background: linear-gradient(to bottom,
+            hsl(0, 100%, 50%),
+            hsl(60, 100%, 50%),
+            hsl(120, 100%, 50%),
+            hsl(180, 100%, 50%),
+            hsl(240, 100%, 50%),
+            hsl(300, 100%, 50%),
+            hsl(360, 100%, 50%));
+    cursor: pointer;
+    writing-mode: tb-rl;
+    /* dọc từ dưới lên */
+    direction: ltr;
+    /* dọc */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    outline: none;
+}
+
+/* Thumb hình tròn */
+.hue-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+}
+
+.hue-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+}
