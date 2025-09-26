@@ -67,12 +67,6 @@ const Test = () => {
         <div className=" text-white w-screen h-screen p-3 relative font-normal overflow-hidden"
         // style={{ backgroundImage: "url('/milky-way-starry-sky-night-mountains-lake-reflection-cold-5k-4480x2520-287.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
         >
-            {/* <div className="fixedMsg fixed top-7 right-1/2 translate-x-1/2 bg-[#121212] w-60 rounded-full flex px-3 py-1 gap-20"
-                style={{ transform: "translateX(50%)", backgroundColor: "#121212" }}
-            >
-                <p className="text-md">Đang xử lí...</p>
-                <LoaderCircle className="animate-spin absolute right-2" size={23} />
-            </div> */}
             <div className=" flex flex-col w-full h-full gap-3">
                 <div className="flex gap-3 flex-wrap w-full h-1/6">
                     <div className="w-full flex-grow-0 h-full ">
@@ -81,14 +75,15 @@ const Test = () => {
                                 <h1 className="text-4xl">{time}</h1>
                                 <p>{date}</p>
                             </div>
-                            <span className="h-full flex flex-1  overflow-hidden items-center justify-center">
+                            <span className="h-full flex flex-1 overflow-hidden items-center justify-evenly px-3">
                                 <img
                                     src={
                                         weather?.weather?.[0]?.icon
                                             ? `https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`
                                             : "/fallback-icon.png" // icon mặc định nếu chưa có dữ liệu
                                     }
-                                    className="h-full scale-125"
+                                    style={{ scale: 1.5 }}
+                                    className="h-full"
                                     alt={weather?.weather?.[0]?.description || "Loading weather"}
                                 />
                                 <span className="flex flex-col items-end justify-between h-full">
