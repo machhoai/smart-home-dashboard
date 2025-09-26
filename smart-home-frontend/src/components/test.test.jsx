@@ -35,8 +35,7 @@ const Test = () => {
     }, []);
 
     return (
-        <div className=" text-white w-screen p-3 relative font-normal"
-            style={{ height: "100dvh" }}
+        <div className=" text-white w-screen h-screen p-3 relative font-normal overflow-hidden"
         // style={{ backgroundImage: "url('/milky-way-starry-sky-night-mountains-lake-reflection-cold-5k-4480x2520-287.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
         >
             {/* <div className="fixedMsg fixed top-7 right-1/2 translate-x-1/2 bg-[#121212] w-60 rounded-full flex px-3 py-1 gap-20"
