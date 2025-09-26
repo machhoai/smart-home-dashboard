@@ -17,6 +17,18 @@
 <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+        document.getElementById("goFull").addEventListener("click", () => {
+            const el = document.documentElement; // toàn trang
+            if (el.requestFullscreen) {
+                el.requestFullscreen();
+            } else if (el.webkitRequestFullscreen) { // Safari
+                el.webkitRequestFullscreen();
+            } else if (el.msRequestFullscreen) { // IE/Edge cũ
+                el.msRequestFullscreen();
+            }
+        });
+    </script>
 </body>
 
 </html>
