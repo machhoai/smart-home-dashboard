@@ -35,29 +35,24 @@ const Test = () => {
     }, []);
 
     return (
-        <div className=" text-white w-screen h-screen p-7 relative font-normal"
+        <div className=" text-white w-screen h-screen p-3 relative font-normal"
         // style={{ backgroundImage: "url('/milky-way-starry-sky-night-mountains-lake-reflection-cold-5k-4480x2520-287.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
         >
-            <div className="fixedMsg fixed top-7 right-1/2 translate-x-1/2 bg-[#121212] w-60 rounded-full flex px-3 py-1 gap-20"
+            {/* <div className="fixedMsg fixed top-7 right-1/2 translate-x-1/2 bg-[#121212] w-60 rounded-full flex px-3 py-1 gap-20"
                 style={{ transform: "translateX(50%)", backgroundColor: "#121212" }}
             >
                 <p className="text-md">Đang xử lí...</p>
-                {/* <LoaderCircle className="animate-spin absolute right-2" size={23} /> */}
-            </div>
-            <div className="w-full h-full grid grid-cols-1"
-                style={{
-                    gridTemplateRows: "auto 1fr",
-                    gap: "10px"
-                }}
-            >
-                <div className="clock flex items-end justify-start gap-2">
-                    <h1 className="text-3xl">{time}</h1>
-                    <p>{date}</p>
-                </div>
-                <div className=" flex flex-col w-full h-full gap-3">
-                    <div className="flex gap-3 flex-wrap w-full h-44">
-                        <div className="w-96 flex-grow-0 h-full ">
-                            <span className="glass-card flex items-center gap-3 !h-full !w-full p-5 justify-between">
+                <LoaderCircle className="animate-spin absolute right-2" size={23} />
+            </div> */}
+            <div className=" flex flex-col w-full h-full gap-3">
+                <div className="flex gap-3 flex-wrap w-full h-1/6">
+                    <div className="w-full flex-grow-0 h-full ">
+                        <span className="glass-card flex  items-center gap-3 !h-full !w-full p-5 justify-evenly">
+                            <div className="clock flex flex-col flex-1 justify-center items-center gap-2">
+                                <h1 className="text-4xl">{time}</h1>
+                                <p>{date}</p>
+                            </div>
+                            <span className="h-full flex flex-1  overflow-hidden items-center justify-center">
                                 <img src="/weather/sn04.png" className="h-full" alt="" />
                                 <span className="flex flex-col items-end justify-between h-full">
                                     <p className="text-lg font-light flex gap-2 items-center"><Navigation size={16} /> Nhà Bè</p>
@@ -67,94 +62,65 @@ const Test = () => {
                                     </span>
                                 </span>
                             </span>
-                        </div>
-                        <div className="flex-grow h-full ">
-                            <span className="flex glass-card items-center gap-3 h-full w-full p-5 justify-between">
-                                <span className="flex flex-col items-center justify-between h-full">
-                                    <p>Hôm nay</p>
-                                    <img src="/weather/sn04.png" className="h-1/2" alt="" />
-                                    <p className="text-sm">Mưa nhỏ</p>
-                                </span>
-                                <span className="flex flex-col items-center justify-between h-full">
-                                    <p>Ngày mai</p>
-                                    <img src="/weather/sn04.png" className="h-1/2" alt="" />
-                                    <p className="text-sm">Mưa nhỏ</p>
-                                </span>
-                                <span className="flex flex-col items-center justify-between h-full">
-                                    <p>Thứ Bảy</p>
-                                    <img src="/weather/sn04.png" className="h-1/2" alt="" />
-                                    <p className="text-sm">Mưa nhỏ</p>
-                                </span>
-                                <span className="flex flex-col items-center justify-between h-full">
-                                    <p>Chủ Nhật</p>
-                                    <img src="/weather/sn04.png" className="h-1/2" alt="" />
-                                    <p className="text-sm">Mưa nhỏ</p>
-                                </span>
-                                <span className="flex flex-col items-center justify-between h-full">
-                                    <p>Thứ Hai</p>
-                                    <img src="/weather/sn04.png" className="h-1/2" alt="" />
-                                    <p className="text-sm">Mưa nhỏ</p>
-                                </span>
-                            </span>
-                        </div>
+                        </span>
                     </div>
-                    <div className="flex gap-2 flex-wrap w-full h-full">
-                        <div className="flex flex-col gap-2 w-60">
-                            <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
-                                <span className="flex flex-col justify-between h-full w-full">
-                                    <span className="">
-                                        <span
-                                            className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                            style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                        >
-                                            <img src="/image 1.png" className="icon" alt="" />
-                                        </span>
-                                        <p className="title">Đèn phòng ngủ</p>
+                </div>
+                <div className="flex gap-2 flex-wrap w-full h-full">
+                    <div className="flex flex-col gap-2 w-60">
+                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
+                            <span className="flex flex-col justify-between h-full w-full">
+                                <span className="">
+                                    <span
+                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                    >
+                                        <img src="/image 1.png" className="icon" alt="" />
                                     </span>
-                                    <span className="flex flex-col justify-between gap-10">
-                                        <span className="flex justify-evenly items-center text-sm">
-                                            <button>Màu</button>
-                                            |
-                                            <button>Trắng</button>
-                                        </span>
-                                        <span>
-                                            <Wifi size={16} color="white" />
-                                        </span>
-                                    </span>
+                                    <p className="title">Đèn phòng ngủ</p>
                                 </span>
-                                <span className="flex gap-2 items-center">
-                                    <VerticalBrightSlider />
-                                    <ColorTemperatureSlider />
+                                <span className="flex flex-col justify-between gap-10">
+                                    <span className="flex justify-evenly items-center text-sm">
+                                        <button>Màu</button>
+                                        |
+                                        <button>Trắng</button>
+                                    </span>
+                                    <span>
+                                        <Wifi size={16} color="white" />
+                                    </span>
                                 </span>
                             </span>
-                            <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
-                                <span className="flex flex-col justify-between h-full w-full">
-                                    <span className="">
-                                        <span
-                                            className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                            style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                        >
-                                            <img src="/image 1.png" className="icon h-full w-full" alt="" />
-                                        </span>
-                                        <p className="title">Đèn phòng ngủ</p>
+                            <span className="flex gap-2 items-center">
+                                <VerticalBrightSlider />
+                                <ColorTemperatureSlider />
+                            </span>
+                        </span>
+                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
+                            <span className="flex flex-col justify-between h-full w-full">
+                                <span className="">
+                                    <span
+                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                    >
+                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
                                     </span>
-                                    <span className="flex flex-col justify-between gap-10">
-                                        <span className="flex justify-evenly items-center text-sm">
-                                            <button>Màu</button>
-                                            |
-                                            <button>Trắng</button>
-                                        </span>
-                                        <span>
-                                            <Wifi size={16} color="white" />
-                                        </span>
-                                    </span>
+                                    <p className="title">Đèn phòng ngủ</p>
                                 </span>
-                                <span className="flex gap-2">
-                                    <VerticalBrightSlider />
-                                    <ColorTemperatureSlider />
+                                <span className="flex flex-col justify-between gap-10">
+                                    <span className="flex justify-evenly items-center text-sm">
+                                        <button>Màu</button>
+                                        |
+                                        <button>Trắng</button>
+                                    </span>
+                                    <span>
+                                        <Wifi size={16} color="white" />
+                                    </span>
                                 </span>
                             </span>
-                        </div>
+                            <span className="flex gap-2">
+                                <VerticalBrightSlider />
+                                <ColorTemperatureSlider />
+                            </span>
+                        </span>
                     </div>
                 </div>
             </div>
