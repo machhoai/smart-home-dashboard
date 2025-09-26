@@ -34,6 +34,35 @@ const Test = () => {
         return () => clearInterval(timer); // clear khi unmount
     }, []);
 
+    const [weather, setWeather] = useState(null);
+
+    const fetchWeather = async () => {
+        try {
+            const res = await fetch(
+                "https://api.openweathermap.org/data/2.5/weather?lat=10.6956953&lon=106.7395591&appid=23ab1814bb3199a48b4ebd7b307bc7ec&units=metric&lang=vi"
+            );
+            const data = await res.json();
+            setWeather(data);
+        } catch (err) {
+            console.error("Fetch weather error:", err);
+        }
+    };
+
+    useEffect(() => {
+        fetchWeather(); // gọi ngay khi load
+
+        const interval = setInterval(fetchWeather, 15 * 60 * 1000); // 15 phút
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        if (!weather) {
+            return
+        }
+        console.log(weather.weather[0]);
+
+    }, [weather])
+
     return (
         <div className=" text-white w-screen h-screen p-3 relative font-normal overflow-hidden"
         // style={{ backgroundImage: "url('/milky-way-starry-sky-night-mountains-lake-reflection-cold-5k-4480x2520-287.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
@@ -53,12 +82,27 @@ const Test = () => {
                                 <p>{date}</p>
                             </div>
                             <span className="h-full flex flex-1  overflow-hidden items-center justify-center">
-                                <img src="/weather/sn04.png" className="h-full" alt="" />
+                                <img
+                                    src={
+                                        weather?.weather?.[0]?.icon
+                                            ? `https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`
+                                            : "/fallback-icon.png" // icon mặc định nếu chưa có dữ liệu
+                                    }
+                                    className="h-full scale-125"
+                                    alt={weather?.weather?.[0]?.description || "Loading weather"}
+                                />
                                 <span className="flex flex-col items-end justify-between h-full">
                                     <p className="text-lg font-light flex gap-2 items-center"><Navigation size={16} /> Nhà Bè</p>
                                     <span className="flex flex-col items-end">
-                                        <p className="text-5xl">25&deg;</p>
-                                        <p>Cloud during day</p>
+                                        <p className="text-5xl">
+                                            {weather?.main?.temp !== undefined ? weather.main.temp.toFixed(0) : "NA"}&deg;
+                                        </p>
+                                        <p>
+                                            {weather?.weather?.[0]?.description
+                                                ? weather.weather[0].description.charAt(0).toUpperCase() +
+                                                weather.weather[0].description.slice(1)
+                                                : "Loading..."}
+                                        </p>
                                     </span>
                                 </span>
                             </span>
