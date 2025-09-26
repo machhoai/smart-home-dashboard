@@ -1,7 +1,8 @@
 {
-    "name": "Dashboard",
+    "name": "My Dashboard",
     "short_name": "Dashboard",
+    "start_url": ".",
     "display": "standalone",
-    "background_color": "#22d3ee",
-    "theme_color": "#22d3ee"
+    "background_color": "#ffffff",
+    "theme_color": "#22d3ee",
 }
