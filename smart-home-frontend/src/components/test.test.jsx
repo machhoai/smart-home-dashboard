@@ -41,7 +41,7 @@ const Test = () => {
                 style={{ transform: "translateX(50%)", backgroundColor: "#121212" }}
             >
                 <p className="text-md">Đang xử lí...</p>
-                <LoaderCircle className="animate-spin absolute right-2" size={23} />
+                {/* <LoaderCircle className="animate-spin absolute right-2" size={23} /> */}
             </div>
             <div className="w-full h-full grid grid-cols-1"
                 style={{
