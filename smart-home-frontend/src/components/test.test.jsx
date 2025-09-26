@@ -36,7 +36,8 @@ const Test = () => {
 
     return (
         <div className=" text-white w-screen h-screen p-7 relative font-normal"
-            style={{ backgroundImage: "url('/milky-way-starry-sky-night-mountains-lake-reflection-cold-5k-4480x2520-287.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        // style={{ backgroundImage: "url('/milky-way-starry-sky-night-mountains-lake-reflection-cold-5k-4480x2520-287.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+        >
             <div className="fixedMsg fixed top-7 right-1/2 translate-x-1/2 bg-[#121212] w-60 rounded-full flex px-3 py-1 gap-20"
                 style={{ transform: "translateX(50%)", backgroundColor: "#121212" }}
             >
