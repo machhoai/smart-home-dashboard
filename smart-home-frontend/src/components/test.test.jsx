@@ -65,9 +65,11 @@ const Test = () => {
                         </span>
                     </div>
                 </div>
-                <div className="flex gap-2 flex-wrap w-full h-full">
-                    <div className="flex flex-col gap-2 w-60">
-                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
+                <div className="flex gap-2 flex-nowrap w-full h-full">
+                    <div className="flex flex-col gap-2 w-60 flex-shrink-0">
+                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between"
+                            style={{ height: "fit-content" }}
+                        >
                             <span className="flex flex-col justify-between h-full w-full">
                                 <span className="">
                                     <span
@@ -94,7 +96,9 @@ const Test = () => {
                                 <ColorTemperatureSlider />
                             </span>
                         </span>
-                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between">
+                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between"
+                            style={{ height: "fit-content" }}
+                        >
                             <span className="flex flex-col justify-between h-full w-full">
                                 <span className="">
                                     <span
@@ -119,6 +123,110 @@ const Test = () => {
                             <span className="flex gap-2">
                                 <VerticalBrightSlider />
                                 <ColorTemperatureSlider />
+                            </span>
+                        </span>
+                    </div>
+                    <div className="flex flex-wrap justify-start w-full items-start gap-2"
+                        style={{ height: "fit-content" }}
+                    >
+                        <span className="flex glass-card flex-1 items-center gap-3 w-full p-2 justify-between"
+                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
+                        >
+                            <span className="flex flex-col justify-between h-full w-full">
+                                <span className="flex flex-nowrap justify-start items-center gap-2">
+                                    <span
+                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                    >
+                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
+                                    </span>
+                                    <p className="title text-xs">Đèn phòng ngủ</p>
+                                </span>
+                                <span className="flex flex-col justify-between gap-10">
+                                    <span>
+                                        <Wifi size={16} color="white" />
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                        <span className="flex glass-card flex-1 items-center gap-3 h-full p-2 justify-between"
+                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
+                        >
+                            <span className="flex flex-col justify-between h-full w-full">
+                                <span className="flex flex-nowrap justify-start items-center gap-2">
+                                    <span
+                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                    >
+                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
+                                    </span>
+                                    <p className="title text-xs">Đèn phòng ngủ</p>
+                                </span>
+                                <span className="flex flex-col justify-between gap-10">
+                                    <span>
+                                        <Wifi size={16} color="white" />
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                        <span className="flex glass-card flex-1 items-center gap-3 w-full p-2 justify-between"
+                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
+                        >
+                            <span className="flex flex-col justify-between h-full w-full">
+                                <span className="flex flex-nowrap justify-start items-center gap-2">
+                                    <span
+                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                    >
+                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
+                                    </span>
+                                    <p className="title text-xs">Đèn phòng ngủ</p>
+                                </span>
+                                <span className="flex flex-col justify-between gap-10">
+                                    <span>
+                                        <Wifi size={16} color="white" />
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                        <span className="flex glass-card flex-1 items-center gap-3 w-full p-2 justify-between"
+                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
+                        >
+                            <span className="flex flex-col justify-between h-full w-full">
+                                <span className="flex flex-nowrap justify-start items-center gap-2">
+                                    <span
+                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                    >
+                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
+                                    </span>
+                                    <p className="title text-xs">Đèn phòng ngủ</p>
+                                </span>
+                                <span className="flex flex-col justify-between gap-10">
+                                    <span>
+                                        <Wifi size={16} color="white" />
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                        <span className="flex glass-card flex-1 items-center gap-3 p-2 justify-between"
+                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
+                        >
+                            <span className="flex flex-col justify-between h-full w-full">
+                                <span className="flex flex-nowrap justify-start items-center gap-2">
+                                    <span
+                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
+                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
+                                    >
+                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
+                                    </span>
+                                    <p className="title text-xs">Đèn phòng ngủ</p>
+                                </span>
+                                <span className="flex flex-col justify-between gap-10">
+                                    <span>
+                                        <Wifi size={16} color="white" />
+                                    </span>
+                                </span>
                             </span>
                         </span>
                     </div>
