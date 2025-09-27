@@ -21,7 +21,8 @@ app.use(express.json());
 // );
 
 app.use(cors({
-    origin: "*",
+    origin: ["https://hoai.homes"], // hoặc mảng domain frontend
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
