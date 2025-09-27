@@ -7,9 +7,6 @@ import dotenv from "dotenv";
 const app = express();
 app.use(express.json());
 
-// Mở CORS cho tất cả origin (không an toàn lắm)
-app.use(cors());
-
 // --- Hoặc mở cho FE của bạn thôi ---
 // app.use(
 //     cors({
