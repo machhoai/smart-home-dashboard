@@ -1,4 +1,5 @@
 .color-tepm-slider {
+    touch-action: none;
     -webkit-appearance: none;
     padding: 4px;
     appearance: none;

@@ -8,6 +8,7 @@ import BrightSlider from "./BrightSlider";
 import VerticalBrightSlider from "./VerticalBrightSlider";
 import { useDevice } from "../hooks/useDevice";
 import { useDevices } from "../hooks/useDevices";
+import DJDevicesGrid from "./DJDevicesGrid";
 import DevicesGrid from "./DevicesGrid";
 
 const MyDashboard = () => {
@@ -124,65 +125,16 @@ const MyDashboard = () => {
                     </div>
                 </div>
                 <div className="flex gap-2 flex-nowrap w-full h-full">
-                    <div className="flex flex-col gap-2 w-60 flex-shrink-0">
-                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between"
-                            style={{ height: "fit-content" }}
-                        >
-                            <span className="flex flex-col justify-between h-full w-full">
-                                <span className="">
-                                    <span
-                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                    >
-                                        <img src="/image 1.png" className="icon" alt="" />
-                                    </span>
-                                    <p className="title">Đèn phòng ngủ</p>
-                                </span>
-                                <span className="flex flex-col justify-between gap-10">
-                                    <span className="flex justify-evenly items-center text-sm">
-                                        <button>Màu</button>
-                                        |
-                                        <button>Trắng</button>
-                                    </span>
-                                    <span>
-                                        <Wifi size={16} color="white" />
-                                    </span>
-                                </span>
-                            </span>
-                            <span className="flex gap-2 items-center">
-                                <VerticalBrightSlider />
-                                <ColorTemperatureSlider />
-                            </span>
-                        </span>
-                        <span className="flex glass-card items-center gap-3 w-full p-2 justify-between"
-                            style={{ height: "fit-content" }}
-                        >
-                            <span className="flex flex-col justify-between h-full w-full">
-                                <span className="">
-                                    <span
-                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                    >
-                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
-                                    </span>
-                                    <p className="title">Đèn phòng ngủ</p>
-                                </span>
-                                <span className="flex flex-col justify-between gap-10">
-                                    <span className="flex justify-evenly items-center text-sm">
-                                        <button>Màu</button>
-                                        |
-                                        <button>Trắng</button>
-                                    </span>
-                                    <span>
-                                        <Wifi size={16} color="white" />
-                                    </span>
-                                </span>
-                            </span>
-                            <span className="flex gap-2">
-                                <VerticalBrightSlider />
-                                <ColorTemperatureSlider />
-                            </span>
-                        </span>
+                    <div className="flex flex-col gap-2 w-60 h-full flex-shrink-0">
+                        {
+                            listLoading ? (
+                                <p className="text-gray-400 text-sm">Đang tải thiết bị...</p>
+                            ) : (
+                                devices.length >= 1 && (
+                                    <DJDevicesGrid devices={devices} />
+                                )
+                            )
+                        }
                     </div>
                     <div className="flex flex-wrap justify-start w-full items-start gap-2"
                         style={{ height: "fit-content" }}

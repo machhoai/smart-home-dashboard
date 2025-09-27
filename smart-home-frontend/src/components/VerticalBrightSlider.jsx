@@ -8,7 +8,7 @@ export default function VerticalBrightSlider({
     initial = 40,
     onChangeDebounced,
     debounceMs = 180,
-    invert = false,
+    invert = true,
 }) {
     const trackRef = useRef(null);
     const timeoutRef = useRef(null);
@@ -17,6 +17,17 @@ export default function VerticalBrightSlider({
 
     const thumbSize = 32;
     const thumbHalf = thumbSize / 2;
+
+    useEffect(() => {
+        if (typeof initial === "number") {
+            const clamped = Math.max(0, Math.min(100, initial));
+            setValue(clamped);
+        }
+    }, [initial]);
+
+    useEffect(() => {
+        console.log("Current value:", value);
+    }, [value]);
 
     // Tính vị trí thumb
     const pos =
