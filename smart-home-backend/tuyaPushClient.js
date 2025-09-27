@@ -1,4 +1,4 @@
-import pkg from './libs/index.js';
+import pkg from './libs/index.cjs';
 const TuyaWebsocket = pkg.default;
 
 export function startTuyaPush({ accessId, accessKey, url, env, onMessage }) {
