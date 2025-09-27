@@ -2,6 +2,7 @@ import express from "express";
 import { callTuya } from "./tuyaApi.js";
 import { startTuyaPush } from './tuyaPushClient.js';
 import cors from "cors";
+import dotenv from "dotenv";
 
 const app = express();
 app.use(express.json());
@@ -12,14 +13,19 @@ app.use(cors());
 // --- Hoặc mở cho FE của bạn thôi ---
 app.use(
     cors({
-        origin: "http://localhost:5173", // FE chạy bằng Vite
+        origin: [
+            "http://localhost:5173",      // ✅ FE local (Vite)
+            "https://hoaihome.vercel.app" // ✅ FE deploy trên Vercel
+        ],
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
 
 const logger = (text, data) => {
-    console.log(text, JSON.stringify(data, null, 2));
+    if (env === "dev") {
+        console.log(text, JSON.stringify(data, null, 2));
+    }
 }
 
 let clients = [];
@@ -146,6 +152,7 @@ app.get("/api/device_details/:id", async (req, res) => {
 
 const PORT = 4000;
 app.listen(PORT, () => {
-    console.log(`🚀 Backend chạy ở http://localhost:${PORT}`);
+    console.log
+        (`🚀 Backend chạy`);
 });
 
