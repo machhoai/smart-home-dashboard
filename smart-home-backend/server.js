@@ -15,7 +15,8 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",      // ✅ FE local (Vite)
-            "https://hoaihome.vercel.app" // ✅ FE deploy trên Vercel
+            "https://hoaihome.vercel.app", // ✅ FE deploy trên Vercel
+            "http://hoaihome.vercel.app" // ✅ FE deploy trên Vercel
         ],
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
