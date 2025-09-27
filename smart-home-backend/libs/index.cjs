@@ -138,12 +138,12 @@ var TuyaMessageSubscribeWebsocket = /** @class */ (function () {
             try {
                 _this.keepAlive(server);
                 var start = Date.now();
-                _this.logger('INFO', "receive msg, jsonMessage=".concat(data));
+                // _this.logger('INFO', "receive msg, jsonMessage=".concat(data));
                 var obj = _this.handleMessage(data);
                 _this.logger('INFO', 'the real message data:', obj);
-                _this.event.emit(TuyaMessageSubscribeWebsocket.data, _this.server, obj);
+                // _this.event.emit(TuyaMessageSubscribeWebsocket.data, _this.server, obj);
                 var end = Date.now();
-                _this.logger('INFO', "business processing cost=".concat(end - start));
+                // _this.logger('INFO', "business processing cost=".concat(end - start));
             }
             catch (e) {
                 _this.logger('ERROR', e);
