@@ -154,9 +154,6 @@ app.get("/api/device_details/:id", async (req, res) => {
     }
 });
 
-const PORT = 4000;
-app.listen(PORT, () => {
-    console.log
-        (`🚀 Backend chạy`);
-});
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`🚀 Backend chạy trên port ${PORT}`));
 
