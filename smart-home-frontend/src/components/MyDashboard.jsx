@@ -6,8 +6,11 @@ import HueSlider from "./HueSlider";
 import ColorTemperatureSlider from "./ColorTemperatureSlider";
 import BrightSlider from "./BrightSlider";
 import VerticalBrightSlider from "./VerticalBrightSlider";
+import { useDevice } from "../hooks/useDevice";
+import { useDevices } from "../hooks/useDevices";
+import DevicesGrid from "./DevicesGrid";
 
-const Test = () => {
+const MyDashboard = () => {
     const [time, setTime] = useState(
         new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
     );
@@ -55,13 +58,29 @@ const Test = () => {
         return () => clearInterval(interval);
     }, []);
 
+    // useEffect(() => {
+    //     if (!weather) {
+    //         return
+    //     }
+    //     console.log(weather.weather[0]);
+
+    // }, [weather])
+
+    const { devices, loading: listLoading } = useDevices();
+
     useEffect(() => {
-        if (!weather) {
+        if (!devices) {
             return
         }
-        console.log(weather.weather[0]);
+        console.log(devices);
 
-    }, [weather])
+    }, [devices])
+
+    // const { details, status, loading: deviceLoading } = useDevice(selectedDeviceId);
+
+
+    if (listLoading) return <p>Đang tải danh sách...</p>;
+    // if (deviceLoading) return <p>Đang tải thiết bị...</p>;
 
     return (
         <div className=" text-white w-screen h-screen p-3 relative font-normal overflow-hidden"
@@ -168,106 +187,15 @@ const Test = () => {
                     <div className="flex flex-wrap justify-start w-full items-start gap-2"
                         style={{ height: "fit-content" }}
                     >
-                        <span className="flex glass-card flex-1 items-center gap-3 w-full p-2 justify-between"
-                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
-                        >
-                            <span className="flex flex-col justify-between h-full w-full">
-                                <span className="flex flex-nowrap justify-start items-center gap-2">
-                                    <span
-                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                    >
-                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
-                                    </span>
-                                    <p className="title text-xs">Đèn phòng ngủ</p>
-                                </span>
-                                <span className="flex flex-col justify-between gap-10">
-                                    <span>
-                                        <Wifi size={16} color="white" />
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                        <span className="flex glass-card flex-1 items-center gap-3 h-full p-2 justify-between"
-                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
-                        >
-                            <span className="flex flex-col justify-between h-full w-full">
-                                <span className="flex flex-nowrap justify-start items-center gap-2">
-                                    <span
-                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                    >
-                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
-                                    </span>
-                                    <p className="title text-xs">Đèn phòng ngủ</p>
-                                </span>
-                                <span className="flex flex-col justify-between gap-10">
-                                    <span>
-                                        <Wifi size={16} color="white" />
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                        <span className="flex glass-card flex-1 items-center gap-3 w-full p-2 justify-between"
-                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
-                        >
-                            <span className="flex flex-col justify-between h-full w-full">
-                                <span className="flex flex-nowrap justify-start items-center gap-2">
-                                    <span
-                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                    >
-                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
-                                    </span>
-                                    <p className="title text-xs">Đèn phòng ngủ</p>
-                                </span>
-                                <span className="flex flex-col justify-between gap-10">
-                                    <span>
-                                        <Wifi size={16} color="white" />
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                        <span className="flex glass-card flex-1 items-center gap-3 w-full p-2 justify-between"
-                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
-                        >
-                            <span className="flex flex-col justify-between h-full w-full">
-                                <span className="flex flex-nowrap justify-start items-center gap-2">
-                                    <span
-                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                    >
-                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
-                                    </span>
-                                    <p className="title text-xs">Đèn phòng ngủ</p>
-                                </span>
-                                <span className="flex flex-col justify-between gap-10">
-                                    <span>
-                                        <Wifi size={16} color="white" />
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                        <span className="flex glass-card flex-1 items-center gap-3 p-2 justify-between"
-                            style={{ height: "fit-content", aspectRatio: 1 / 1, flexBasis: 1 / 3, minWidth: "120px" }}
-                        >
-                            <span className="flex flex-col justify-between h-full w-full">
-                                <span className="flex flex-nowrap justify-start items-center gap-2">
-                                    <span
-                                        className="flex items-center w-8 h-8 rounded-full justify-center gap-2 p-1 "
-                                        style={{ backgroundColor: "rgba(125, 124, 124, 0.5)" }}
-                                    >
-                                        <img src="/image 1.png" className="icon h-full w-full" alt="" />
-                                    </span>
-                                    <p className="title text-xs">Đèn phòng ngủ</p>
-                                </span>
-                                <span className="flex flex-col justify-between gap-10">
-                                    <span>
-                                        <Wifi size={16} color="white" />
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
+                        {
+                            listLoading ? (
+                                <p className="text-gray-400 text-sm">Đang tải thiết bị...</p>
+                            ) : (
+                                devices.length >= 1 && (
+                                    <DevicesGrid devices={devices} />
+                                )
+                            )
+                        }
                     </div>
                 </div>
             </div>
@@ -275,4 +203,4 @@ const Test = () => {
     )
 }
 
-export default Test;
+export default MyDashboard;
