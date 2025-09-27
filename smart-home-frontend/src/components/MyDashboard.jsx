@@ -67,7 +67,7 @@ const MyDashboard = () => {
 
     // }, [weather])
 
-    const { devices, loading: listLoading } = useDevices();
+    const { devices, loading: listLoading, error } = useDevices();
 
     useEffect(() => {
         if (!devices) {
@@ -80,7 +80,7 @@ const MyDashboard = () => {
     // const { details, status, loading: deviceLoading } = useDevice(selectedDeviceId);
 
 
-    if (listLoading) return <p>Đang tải danh sách...</p>;
+    if (error) return <p>{error}</p>;
     // if (deviceLoading) return <p>Đang tải thiết bị...</p>;
 
     return (
