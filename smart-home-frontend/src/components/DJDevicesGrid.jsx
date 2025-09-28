@@ -1,8 +1,8 @@
 import { Wifi, WifiOff } from "lucide-react";
 import VerticalBrightSlider from "./VerticalBrightSlider";
-import ColorTemperatureSlider from "./ColorTemperatureSlider";
 import { useDevice } from "../hooks/useDevice";
 import { useEffect, useState } from "react";
+import ColorTempSlider from "./ColorTemperatureSlider";
 
 export default function DJDevicesGrid({ devices }) {
     const djDevices = devices.filter((d) => d.category === "dj");
@@ -25,20 +25,20 @@ const DeviceCard = ({ device }) => {
     const workMode = status?.result?.find(item => item.code === "work_mode")?.value;
     const tempValue = status?.result?.find(item => item.code === "temp_value_v2")?.value;
 
-    useEffect(() => {
-        console.log(status);
-        console.log(details);
-        console.log(brightValue);
+    // useEffect(() => {
+    //     console.log(status);
+    //     console.log(details);
+    //     console.log(brightValue);
 
 
 
-        // if (status, details, loading, error) {
-        //     console.log(status);
-        //     console.log(details);
-        //     console.log(loading);
-        //     console.log(error);
-        // }
-    }, [status, details, loading, error])
+    //     // if (status, details, loading, error) {
+    //     //     console.log(status);
+    //     //     console.log(details);
+    //     //     console.log(loading);
+    //     //     console.log(error);
+    //     // }
+    // }, [status, details, loading, error])
 
     return (
         <span
@@ -86,7 +86,7 @@ const DeviceCard = ({ device }) => {
             {/* Bên phải: Slider */}
             <span className="flex gap-2 items-center">
                 <VerticalBrightSlider initial={brightValue} />
-                <ColorTemperatureSlider />
+                <ColorTempSlider />
             </span>
         </span>
     );

@@ -7,11 +7,7 @@ function ColorTempSlider() {
 
     const handleChange = (e) => {
         const val = e.target.value;
-
-        // Update UI ngay để slider mượt
         setTempColor(val);
-
-        // Debounce API call hoặc logic nặng
         clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
             console.log("Call API with:", val);
@@ -19,16 +15,18 @@ function ColorTempSlider() {
     };
 
     return (
-        <input
-            type="range"
-            min="0"
-            max="360"
-            value={tempColor}
-            onChange={handleChange}
-            className="color-tepm-slider"
-        />
+        // Thêm một container cho slider đã xoay
+        <div className="color-temp-slider-container">
+            <input
+                type="range"
+                min="0"
+                max="360"
+                value={tempColor}
+                onChange={handleChange}
+                className="color-temp-slider"
+            />
+        </div>
     );
 }
 
 export default ColorTempSlider;
-

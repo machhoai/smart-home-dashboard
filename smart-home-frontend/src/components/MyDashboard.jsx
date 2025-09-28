@@ -11,7 +11,6 @@ import { useDevices } from "../hooks/useDevices";
 import DJDevicesGrid from "./DJDevicesGrid";
 import DevicesGrid from "./DevicesGrid";
 import { useMessages } from "../hooks/useMassages";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const MyDashboard = () => {
     const [time, setTime] = useState(
@@ -71,15 +70,19 @@ const MyDashboard = () => {
 
     const { devices, loading: listLoading, error } = useDevices();
 
+    // useEffect(() => {
+    //     if (!devices) {
+    //         return
+    //     }
+    //     console.log(devices);
+
+    // }, [devices])
+
+    const { messages, clearMessages } = useMessages();
+
     useEffect(() => {
-        if (!devices) {
-            return
-        }
-        console.log(devices);
-
-    }, [devices])
-
-    const [messages, clearMessages] = useMessages
+        console.log(messages);
+    }, [messages])
 
 
     if (error) return <p>{error}</p>;
@@ -89,7 +92,6 @@ const MyDashboard = () => {
         <div className=" text-white w-screen h-screen p-3 relative font-normal overflow-hidden"
         // style={{ backgroundImage: "url('/milky-way-starry-sky-night-mountains-lake-reflection-cold-5k-4480x2520-287.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
         >
-            <SpeedInsights />
             <div className=" flex flex-col w-full h-full gap-3">
                 <div className="flex gap-3 flex-wrap w-full h-1/6">
                     <div className="w-full flex-grow-0 h-full ">
