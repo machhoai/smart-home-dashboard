@@ -25,9 +25,9 @@ export default function VerticalBrightSlider({
         }
     }, [initial]);
 
-    useEffect(() => {
-        console.log("Current value:", value);
-    }, [value]);
+    // useEffect(() => {
+    //     console.log("Current value:", value);
+    // }, [value]);
 
     // Tính vị trí thumb
     const pos =
