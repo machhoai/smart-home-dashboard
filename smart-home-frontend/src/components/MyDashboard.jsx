@@ -65,6 +65,11 @@ const MyDashboard = () => {
     const { messages, clearMessages } = useMessages();
     const [newestMsg, setNewestMsg] = useState(null)
 
+    useEffect(() => {
+        setNewestMsg(messages[0])
+        console.log(messages[0]);
+    }, [messages])
+
 
     if (error) return <p>{error}</p>;
     // if (deviceLoading) return <p>Đang tải thiết bị...</p>;
