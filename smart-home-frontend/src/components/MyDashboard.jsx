@@ -10,6 +10,8 @@ import { useDevice } from "../hooks/useDevice";
 import { useDevices } from "../hooks/useDevices";
 import DJDevicesGrid from "./DJDevicesGrid";
 import DevicesGrid from "./DevicesGrid";
+import { useMessages } from "../hooks/useMassages";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const MyDashboard = () => {
     const [time, setTime] = useState(
@@ -77,7 +79,7 @@ const MyDashboard = () => {
 
     }, [devices])
 
-    // const { details, status, loading: deviceLoading } = useDevice(selectedDeviceId);
+    const [messages, clearMessages] = useMessages
 
 
     if (error) return <p>{error}</p>;
