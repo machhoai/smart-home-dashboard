@@ -52,6 +52,7 @@ const tuyaClient = startTuyaPush({
     accessKey: '99a76409afc9436f98cc954be74b2a07',
     url: "wss://mqe.tuyaus.com:8285/",
     env: "test",
+    subscriptionId: '97djrgkesmtjarecadhu-sub',
     onMessage: (msg) => {
         console.log(msg);
 
