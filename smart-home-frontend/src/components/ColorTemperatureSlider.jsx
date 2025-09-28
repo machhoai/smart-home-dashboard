@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
 import "./ColorTemperatureSlider.css";
 
-function ColorTempSlider() {
-    const [tempColor, setTempColor] = useState(30);
+function ColorTempSlider({ initial }) {
+    const [tempColor, setTempColor] = useState(initial);
+    // console.log(tempColor);
+
     const timeoutRef = useRef(null);
 
     const handleChange = (e) => {
@@ -20,7 +22,7 @@ function ColorTempSlider() {
             <input
                 type="range"
                 min="0"
-                max="360"
+                max="100"
                 value={tempColor}
                 onChange={handleChange}
                 className="color-temp-slider"

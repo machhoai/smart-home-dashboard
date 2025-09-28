@@ -7,19 +7,6 @@ import dotenv from "dotenv";
 const app = express();
 app.use(express.json());
 
-// --- Hoặc mở cho FE của bạn thôi ---
-// app.use(
-//     cors({
-//         origin: [
-//             "http://localhost:5173",      // ✅ FE local (Vite)
-//             "https://hoaihome.vercel.app", // ✅ FE deploy trên Vercel
-//             "http://hoaihome.vercel.app" // ✅ FE deploy trên Vercel
-//         ],
-//         methods: ["GET", "POST", "PUT", "DELETE"],
-//         allowedHeaders: ["Content-Type", "Authorization"],
-//     })
-// );
-
 app.use(cors({
     origin: ["https://hoai.homes", "https://www.hoai.homes", "http://localhost:5173"], // hoặc mảng domain frontend
     credentials: true,
@@ -66,6 +53,8 @@ const tuyaClient = startTuyaPush({
     url: "wss://mqe.tuyaus.com:8285/",
     env: "test",
     onMessage: (msg) => {
+        console.log(msg);
+
         sendToClients(msg);
     }
 });

@@ -60,29 +60,10 @@ const MyDashboard = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // useEffect(() => {
-    //     if (!weather) {
-    //         return
-    //     }
-    //     console.log(weather.weather[0]);
-
-    // }, [weather])
-
     const { devices, loading: listLoading, error } = useDevices();
 
-    // useEffect(() => {
-    //     if (!devices) {
-    //         return
-    //     }
-    //     console.log(devices);
-
-    // }, [devices])
-
     const { messages, clearMessages } = useMessages();
-
-    useEffect(() => {
-        console.log(messages);
-    }, [messages])
+    const [newestMsg, setNewestMsg] = useState(null)
 
 
     if (error) return <p>{error}</p>;
@@ -136,7 +117,7 @@ const MyDashboard = () => {
                                 <p className="text-gray-400 text-sm">Đang tải thiết bị...</p>
                             ) : (
                                 devices.length >= 1 && (
-                                    <DJDevicesGrid devices={devices} />
+                                    <DJDevicesGrid devices={devices} message={newestMsg} />
                                 )
                             )
                         }
@@ -149,7 +130,7 @@ const MyDashboard = () => {
                                 <p className="text-gray-400 text-sm">Đang tải thiết bị...</p>
                             ) : (
                                 devices.length >= 1 && (
-                                    <DevicesGrid devices={devices} />
+                                    <DevicesGrid devices={devices} message={newestMsg} />
                                 )
                             )
                         }

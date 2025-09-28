@@ -16,12 +16,17 @@ export function startTuyaPush({ accessId, accessKey, url, env, onMessage }) {
         if (onMessage) onMessage(message);   // callback gửi về backend
     });
     client.reconnect(() => {
+        console.log("reconnect");
+
     });
 
     client.ping(() => {
+        console.log("ping");
+
     });
 
     client.pong(() => {
+        console.log("pong");
     });
 
     client.close((ws, ...args) => {
