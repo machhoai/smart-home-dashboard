@@ -54,8 +54,6 @@ const tuyaClient = startTuyaPush({
     env: "test",
     subscriptionId: '97djrgkesmtjarecadhu-sub',
     onMessage: (msg) => {
-        console.log(msg);
-
         sendToClients(msg);
     }
 });
@@ -159,7 +157,7 @@ app.post("/api/set_status/:deviceId", async (req, res) => {
         const { properties } = req.body;
         const body = { "properties": properties };
 
-        console.log(body);
+        // console.log(body);
 
 
         const response = await callTuya(url, "POST", body, accessToken)

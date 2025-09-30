@@ -59,7 +59,7 @@ const DeviceCard = ({ device, message }) => {
         // 🟢 Xử lý Property update
         if (bizCode === "devicePropertyMessage") {
             const props = message?.payload?.data?.bizData?.properties ?? [];
-            console.log(props);
+            // console.log(props);
 
             props.forEach((p) => {
                 switch (p.code) {
@@ -106,7 +106,7 @@ const DeviceCard = ({ device, message }) => {
         const temp = status.result.find(i => i.code === "temp_value_v2")?.value;
         const colour = status.result.find(i => i.code === "colour_data_v2")?.value;
 
-        console.log(temp);
+        // console.log(temp);
 
 
         setIsOn(switchLed);
@@ -118,9 +118,9 @@ const DeviceCard = ({ device, message }) => {
         setIsOnline(details?.result?.is_online === true);
     }, [status, details]);
 
-    useEffect(() => {
-        console.log("brightVal " + brightValue);
-    }, [brightValue])
+    // useEffect(() => {
+    //     console.log("brightVal " + brightValue);
+    // }, [brightValue])
 
     const handleClick = async () => {
         try {
