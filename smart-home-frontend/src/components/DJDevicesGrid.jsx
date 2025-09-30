@@ -146,7 +146,7 @@ const DeviceCard = ({ device, message }) => {
         <span
             key={device.id || device.uuid}
             className={`flex glass-card items-center gap-3 w-full h-full p-2 justify-between`}
-            style={{ height: "fit-content", backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)", }}
+            style={{ height: "fit-content", backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)", transition: "background-color 0.4s ease"}}
             onClick={handleClick}
         >
             {/* Bên trái */}

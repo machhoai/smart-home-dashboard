@@ -99,7 +99,8 @@ const DeviceCard = ({ device, message }) => {
                 aspectRatio: "1 / 1",
                 flexBasis: "calc(33.333% - 0.5rem)",
                 minWidth: "120px",
-                backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)"
+                backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)",
+                transition: "background-color 0.4s ease"
             }}
             onClick={handleClick}
         >
