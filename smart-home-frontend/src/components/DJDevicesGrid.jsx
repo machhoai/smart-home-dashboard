@@ -122,32 +122,35 @@ const DeviceCard = ({ device, message }) => {
     //     console.log("brightVal " + brightValue);
     // }, [brightValue])
 
-    const handleClick = async () => {
+    const handleClick = async ({ properties }) => {
+        console.log(properties);
+
         try {
             if (!isOnline) {
                 console.warn("⚠️ Thiết bị đang offline — không thể gửi lệnh.");
                 return;
             }
 
-            const newValue = !isOn;
-
-            const result = await updateStatus({
-                switch_led: newValue,
-            });
+            const result = await updateStatus(
+                properties
+            );
             setIsUpdateStatusSuccess(result.success)
         } catch (err) {
             setIsUpdateStatusSuccess(false)
             console.error("❌ Gửi lệnh toggle thất bại:", err);
         }
     };
-
+    //switch_led: newValue,
 
     return (
         <span
             key={device.id || device.uuid}
             className={`flex glass-card items-center gap-3 w-full h-full p-2 justify-between`}
-            style={{ height: "fit-content", backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)", transition: "background-color 0.4s ease"}}
-            onClick={handleClick}
+            style={{ height: "fit-content", backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)", transition: "background-color 0.4s ease" }}
+            onClick={() => {
+                const newValue = !isOn;
+                handleClick({ properties: { switch_led: newValue } })
+            }}
         >
             {/* Bên trái */}
             <span className="flex flex-col justify-between h-full w-full">
@@ -171,9 +174,25 @@ const DeviceCard = ({ device, message }) => {
                 {/* Phần dưới: Nút điều khiển + wifi */}
                 <span className="flex flex-col gap-12 mt-2">
                     <span className="flex justify-evenly items-center text-sm">
-                        <button className={`hover:underline ${workMode ? " text-gray-400" : "text-white"}`}>Màu</button>
+                        <button
+                            className={`hover:underline ${workMode ? " text-gray-400" : "text-white"}`}
+                            onClick={(e) => {
+                                e.stopPropagation(); // 👈 Chặn sự kiện click nổi lên cha
+                                handleClick({ properties: { work_mode: "colour" } });
+                            }}
+                        >
+                            Màu
+                        </button>
                         <span>|</span>
-                        <button className={`hover:underline ${!workMode ? " text-gray-400" : "text-white"}`}>Trắng</button>
+                        <button
+                            className={`hover:underline ${!workMode ? " text-gray-400" : "text-white"}`}
+                            onClick={(e) => {
+                                e.stopPropagation(); // 👈 Chặn sự kiện click nổi lên cha
+                                handleClick({ properties: { work_mode: "white" } });
+                            }}
+                        >
+                            Trắng
+                        </button>
                     </span>
                     <span className="flex">
                         {isOnline ?
