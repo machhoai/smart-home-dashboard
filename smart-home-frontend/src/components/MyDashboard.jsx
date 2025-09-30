@@ -67,7 +67,7 @@ const MyDashboard = () => {
 
     useEffect(() => {
         setNewestMsg(messages[0])
-        console.log(messages[0]);
+        // console.log(messages[0]);
     }, [messages])
 
 

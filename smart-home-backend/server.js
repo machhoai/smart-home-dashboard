@@ -114,7 +114,7 @@ app.get("/api/device/:id", async (req, res) => {
         // 1. Lấy token mới
         const accessToken = await getToken();
 
-        // 2. Gọi API lấy danh sách thiết bị trong space
+        // 2. Gọi API lấy trạng thái thiết bị
         const id = req.params.id;
         const url = `/v1.0/iot-03/devices/${id}/status`;
 
@@ -140,6 +140,31 @@ app.get("/api/device_details/:id", async (req, res) => {
         const deviceStatus = await callTuya(url, "GET", "", accessToken);
 
         res.json(deviceStatus);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.post("/api/set_status/:deviceId", async (req, res) => {
+    try {
+        const accessToken = await getToken();
+
+        const id = req.params.deviceId;
+        const url = `/v2.0/cloud/thing/${id}/shadow/properties/issue`;
+
+        if (!req.body || !req.body.properties) {
+            return res.status(400).json({ error: "Missing properties in request body" });
+        }
+
+        const { properties } = req.body;
+        const body = { "properties": properties };
+
+        console.log(body);
+
+
+        const response = await callTuya(url, "POST", body, accessToken)
+
+        res.json(response);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

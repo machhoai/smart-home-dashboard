@@ -14,6 +14,23 @@ const getDeviceDetails = async (id) => {
     return response.json();
 };
 
+const setDeviceStatus = async (id, properties) => {
+
+    const response = await fetch(`${BASE_URL}/api/set_status/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ properties }),
+    });
+
+    if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`Failed to set device status: ${errText}`);
+    }
+    return response.json();
+};
+
 export function useDevice(id) {
     const [details, setDetails] = useState(null);
     const [status, setStatus] = useState(null);
@@ -38,6 +55,24 @@ export function useDevice(id) {
         }
     }, [id]);
 
+    const updateStatus = useCallback(
+        async (properties) => {
+            if (!id) return;
+            setLoading(true);
+            setError(null);
+            try {
+                const data = await setDeviceStatus(id, properties);
+                return data
+            } catch (err) {
+                setError(err.message || "Failed to update status");
+                throw err;
+            } finally {
+                setLoading(false);
+            }
+        },
+        [id]
+    );
+
     useEffect(() => {
         fetchDevice();
     }, [fetchDevice]);
@@ -48,5 +83,6 @@ export function useDevice(id) {
         loading,
         error,
         refetch: fetchDevice,
+        updateStatus
     };
 }

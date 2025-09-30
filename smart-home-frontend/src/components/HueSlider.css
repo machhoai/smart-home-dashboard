@@ -1,47 +1,53 @@
 .hue-slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 32px;
-    height: 300px;
+    width: 220px;
+    height: 32px;
     border-radius: 9999px;
     /* bo tròn full */
-    background: linear-gradient(to bottom,
-            hsl(0, 100%, 50%),
-            hsl(60, 100%, 50%),
-            hsl(120, 100%, 50%),
-            hsl(180, 100%, 50%),
-            hsl(240, 100%, 50%),
-            hsl(300, 100%, 50%),
-            hsl(360, 100%, 50%));
+    background: linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red);
     cursor: pointer;
-    writing-mode: tb-rl;
-    /* dọc từ dưới lên */
-    direction: ltr;
-    /* dọc */
-    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     outline: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transform-origin: 0 0;
+    transform: rotate(-90deg) translateX(-100%);
+    transform: rotate(-90deg);
+    transform-origin: 0% 0%;
+    left: 0;
+    top: 220px;
+}
+
+.hue-slider-container {
+    width: 32px;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Thumb hình tròn */
 .hue-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #f2f2f2;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     cursor: grab;
+    margin-top: -1px;
 }
 
 .hue-slider::-moz-range-thumb {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #f2f2f2;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     cursor: grab;
+    margin-top: -1px;
 }

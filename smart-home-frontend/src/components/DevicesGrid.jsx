@@ -25,9 +25,10 @@ export default function DevicesGrid({ devices, message }) {
 
 const DeviceCard = ({ device, message }) => {
     const deviceId = device.id || device.uuid;
-    const { status, details, loading, error, refetch } = useDevice(deviceId);
+    const { status, details, loading, error, refetch, updateStatus } = useDevice(deviceId);
     const [isOnline, setIsOnline] = useState(details?.result?.is_online === true)
     const [isOn, setIsOn] = useState(status?.result?.find(item => item.code === "switch_led")?.value === true)
+    const [isUpdateStatusSuccess, setIsUpdateStatusSuccess] = useState()
 
     useEffect(() => {
         if (!message || message.length > 0) return;
@@ -68,6 +69,26 @@ const DeviceCard = ({ device, message }) => {
         setIsOnline(details?.result?.is_online === true);
     }, [status, details]);
 
+    const handleClick = async () => {
+        try {
+            if (!isOnline) {
+                console.warn("⚠️ Thiết bị đang offline — không thể gửi lệnh.");
+                return;
+            }
+
+            const newValue = !isOn;
+
+            const result = await updateStatus({
+                switch_1: newValue,
+            });
+            setIsUpdateStatusSuccess(result.success)
+
+        } catch (err) {
+            setIsUpdateStatusSuccess(false)
+            console.error("❌ Gửi lệnh toggle thất bại:", err);
+        }
+    };
+
 
     return (
         <span
@@ -80,6 +101,7 @@ const DeviceCard = ({ device, message }) => {
                 minWidth: "120px",
                 backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)"
             }}
+            onClick={handleClick}
         >
             <span className="flex flex-col justify-between h-full w-full">
                 <span className="flex flex-nowrap justify-start items-center gap-2">

@@ -12,7 +12,7 @@
     width: 220px;
     height: 32px;
     border-radius: 9999px;
-    background: linear-gradient(to right,
+    background: linear-gradient(to left,
             #D9D9D9,
             #febf48);
     cursor: pointer;
@@ -41,7 +41,7 @@
     background: #f2f2f2;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     cursor: grab;
-    margin-top: -2px;
+    margin-top: -1px;
     /* Điều chỉnh để thumb nằm giữa chiều cao của track */
 }
 
@@ -52,7 +52,7 @@
     background: #f2f2f2;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     cursor: grab;
-    margin-top: -4px;
+    margin-top: -1px;
 }
 
 .color-temp-slider-container {
@@ -67,69 +67,21 @@
     -webkit-appearance: none;
     appearance: none;
     width: 220px;
-    /* Chiều dài ban đầu (ngang) */
     height: 32px;
-    /* Chiều rộng ban đầu (ngang) */
     border-radius: 9999px;
-    background: linear-gradient(to right, #D9D9D9, #febf48);
+    background: linear-gradient(to left, #D9D9D9, #febf48);
     cursor: pointer;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     outline: none;
 
     position: absolute;
-    /* Đặt slider tuyệt đối trong container */
     top: 0;
     left: 0;
 
-    /* Phép biến đổi để xoay và dịch chuyển */
-    /* Bước 1: Dịch chuyển slider để tâm của nó nằm ở góc trên bên trái của container */
-    /*         (Tức là dịch trái 1/2 chiều rộng, và dịch lên 1/2 chiều cao) */
-    /* Bước 2: Xoay -90deg. */
-    /* Bước 3: Dịch chuyển lại để nó nằm đúng vị trí dọc và giữa container */
-
-    /* Cách 1: Sử dụng translate và rotate */
-    /* Giả sử tâm xoay là 0 0 */
     transform-origin: 0 0;
-    /* Xoay ngược chiều kim đồng hồ 90 độ */
-    /* Sau khi xoay, phần tử sẽ có chiều rộng 32px và chiều cao 220px,
-       nhưng gốc tọa độ (0,0) của nó vẫn ở vị trí cũ.
-       Để nó nằm thẳng đứng và đầy đủ trong container (32x220),
-       chúng ta cần dịch chuyển nó.
-       Gốc mới của slider (chiều rộng 32px, chiều cao 220px) phải nằm ở (0, 32)
-       Nếu gốc cũ (0,0) nằm ở (0,0) của container,
-       sau khi xoay -90deg, đỉnh mới của slider sẽ nằm ở (32,0)
-       Chúng ta muốn nó nằm ở (0, 220) của container
-       => dịch chuyển (0 - 32) theo x, (220 - 0) theo y
-       => dịch chuyển (-32px, 220px)
-    */
     transform: rotate(-90deg) translateX(-100%);
-    /* translateX(-100%) sẽ đẩy sang trái bằng chính chiều rộng của nó */
-    /* Hoặc: */
-    /* transform: translateY(100%) rotate(-90deg); */
-    /* Tùy thuộc vào bạn muốn điểm nào là gốc.
-       Hãy thử dùng `transform: rotate(-90deg) translateX(-100%);` kết hợp với `transform-origin: 0 0;` */
-    /* Và đặt `top: 220px; left: 0;` trên slider */
-
-    /* Một ví dụ khác đơn giản hơn để hình dung: */
-    /* Để xoay một phần tử 90 độ ngược chiều kim đồng hồ (vertical từ dưới lên) */
-    /* Giả sử slider gốc là width: W, height: H */
-    /* Container là width: H, height: W */
-    /*
-    transform:
-        rotate(-90deg)
-        translateY(-100%) // Dịch chuyển lên để top của slider khớp với top của container
-    ;
-    transform-origin: top left; // Xoay quanh góc trên bên trái
-    */
-
-    /* Thử cấu hình này: */
     transform: rotate(-90deg);
     transform-origin: 0% 0%;
-    /* Xoay quanh góc trên bên trái của slider ban đầu */
     left: 0;
-    /* Đặt slider ở góc trên bên trái của container */
     top: 220px;
-    /* Dịch chuyển xuống bằng chiều cao mong muốn của slider dọc */
-    /* Sau khi xoay và dịch chuyển, chiều rộng thực tế của slider sẽ là 32px và chiều cao là 220px,
-       nó sẽ nằm hoàn toàn trong container. */
 }

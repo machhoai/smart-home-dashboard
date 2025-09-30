@@ -26,7 +26,7 @@ export function useMessages() {
         eventSource.onmessage = (event) => {
             try {
                 const data = JSON.parse(event.data);
-                console.log(data);
+                // console.log(data);
 
                 setMessages((prev) => [data, ...prev]);
             } catch (err) {

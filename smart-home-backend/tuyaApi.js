@@ -13,23 +13,25 @@ function sha256(content) {
     return crypto.createHash("sha256").update(content).digest("hex");
 }
 
-export function signRequest(method, path, body = "", accessToken = null) {
+export function signRequest(method, path, rawBody = "", accessToken = null) {
     const clientId = process.env.TUYA_CLIENT_ID;
     const clientSecret = process.env.TUYA_CLIENT_SECRET;
+    const t = String(Date.now());
 
-    const t = String(Date.now()); // hoặc Date.now() - 60000 nếu server chênh lệch giờ
-    const bodyStr = body ? JSON.stringify(body) : "";
-    const contentHash = sha256(bodyStr);
+    // Nếu body là object → stringify
+    const bodyStr = typeof rawBody === "string" ? rawBody : JSON.stringify(rawBody);
+    const contentHash = crypto
+        .createHash("sha256")
+        .update(bodyStr)
+        .digest("hex");
 
-    // stringToSign
     const stringToSign = [
         method.toUpperCase(),
         contentHash,
-        "", // empty line
+        "",
         path
     ].join("\n");
 
-    // fullSign
     const fullSign = accessToken
         ? clientId + accessToken + t + stringToSign
         : clientId + t + stringToSign;
@@ -40,12 +42,11 @@ export function signRequest(method, path, body = "", accessToken = null) {
         .digest("hex")
         .toUpperCase();
 
-    return { sign, t };
+    return { sign, t, bodyStr };
 }
 
-// Gọi API Tuya
 export async function callTuya(path, method = "GET", body = "", accessToken = null) {
-    const { sign, t } = signRequest(method, path, body, accessToken);
+    const { sign, t, bodyStr } = signRequest(method, path, body, accessToken);
 
     const headers = {
         "client_id": process.env.TUYA_CLIENT_ID,
@@ -55,14 +56,12 @@ export async function callTuya(path, method = "GET", body = "", accessToken = nu
         "Content-Type": "application/json"
     };
 
-    if (accessToken) {
-        headers["access_token"] = accessToken;
-    }
+    if (accessToken) headers["access_token"] = accessToken;
 
     const res = await fetch(process.env.TUYA_ENDPOINT + path, {
         method,
         headers,
-        body: method === "GET" ? null : body
+        body: method === "GET" ? null : bodyStr
     });
 
     return await res.json();

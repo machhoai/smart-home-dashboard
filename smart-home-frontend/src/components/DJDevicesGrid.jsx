@@ -3,6 +3,7 @@ import VerticalBrightSlider from "./VerticalBrightSlider";
 import { useDevice } from "../hooks/useDevice";
 import { useEffect, useState } from "react";
 import ColorTempSlider from "./ColorTemperatureSlider";
+import HueSlider from "./HueSlider";
 
 export default function DJDevicesGrid({ devices, message }) {
     const djDevices = devices.filter((d) => d.category === "dj");
@@ -30,19 +31,20 @@ export default function DJDevicesGrid({ devices, message }) {
 
 const DeviceCard = ({ device, message }) => {
     const deviceId = device.id || device.uuid;
-    const { status, details, loading, error, refetch } = useDevice(deviceId);
+    const { status, details, loading, error, refetch, updateStatus } = useDevice(deviceId);
     const [isOnline, setIsOnline] = useState(details?.result?.is_online === true)
     const [isOn, setIsOn] = useState(status?.result?.find(item => item.code === "switch_led")?.value === true)
     const [brightValue, setBrightValue] = useState(status?.result?.find(item => item.code === "bright_value_v2")?.value / 10)
     const [workMode, setWorkMode] = useState(status?.result?.find(item => item.code === "work_mode")?.value === "white")
     const [tempValue, setTempValue] = useState(status?.result?.find(item => item.code === "temp_value_v2")?.value)
-    const [colourData, setColourData] = useState(status?.result?.find(item => item.code === "temp_value_v2")?.value)
+    const [colourData, setColourData] = useState(status?.result?.find(item => item.code === "colour_data_v2")?.value)
+    const [isUpdateStatusSuccess, setIsUpdateStatusSuccess] = useState()
 
     useEffect(() => {
         if (!message || message.length > 0) return;
 
-
         const bizCode = message?.payload?.data?.bizCode;
+
 
         // 🟡 Xử lý Online / Offline
         if (bizCode === "deviceOnline") {
@@ -57,6 +59,7 @@ const DeviceCard = ({ device, message }) => {
         // 🟢 Xử lý Property update
         if (bizCode === "devicePropertyMessage") {
             const props = message?.payload?.data?.bizData?.properties ?? [];
+            console.log(props);
 
             props.forEach((p) => {
                 switch (p.code) {
@@ -64,6 +67,8 @@ const DeviceCard = ({ device, message }) => {
                         setIsOn(p.value === true);
                         break;
                     case "bright_value":
+                        setBrightValue(p.value / 10);
+                        break;
                     case "bright_value_v2":
                         setBrightValue(p.value / 10);
                         break;
@@ -77,6 +82,11 @@ const DeviceCard = ({ device, message }) => {
                         setTempValue(p.value);
                         break;
                     case "colour_data":
+                        const { h, s, v } = decodeTuyaColor(p.value);
+                        setColourData(h);
+                        setBrightValue(v / 10)
+                        break;
+                    case "colour_data_v2":
                         setColourData(p.value);
                         break;
                     default:
@@ -91,13 +101,16 @@ const DeviceCard = ({ device, message }) => {
 
 
         const switchLed = status.result.find(i => i.code === "switch_led")?.value === true;
-        const brightVal = status.result.find(i => i.code === "bright_value_v2")?.value / 10;
+        const brightVal = status.result.find(i => i.code === "bright_value_v2")?.value;
         const mode = status.result.find(i => i.code === "work_mode")?.value === "white";
-        const temp = status.result.find(i => i.code === "temp_value_v2")?.value / 10;
-        const colour = status.result.find(i => i.code === "colour_data")?.value;
+        const temp = status.result.find(i => i.code === "temp_value_v2")?.value;
+        const colour = status.result.find(i => i.code === "colour_data_v2")?.value;
+
+        console.log(temp);
+
 
         setIsOn(switchLed);
-        setBrightValue(brightVal);
+        setBrightValue(brightVal / 10);
         setWorkMode(mode);
         setTempValue(temp);
         setColourData(colour);
@@ -105,12 +118,36 @@ const DeviceCard = ({ device, message }) => {
         setIsOnline(details?.result?.is_online === true);
     }, [status, details]);
 
+    useEffect(() => {
+        console.log("brightVal " + brightValue);
+    }, [brightValue])
+
+    const handleClick = async () => {
+        try {
+            if (!isOnline) {
+                console.warn("⚠️ Thiết bị đang offline — không thể gửi lệnh.");
+                return;
+            }
+
+            const newValue = !isOn;
+
+            const result = await updateStatus({
+                switch_led: newValue,
+            });
+            setIsUpdateStatusSuccess(result.success)
+        } catch (err) {
+            setIsUpdateStatusSuccess(false)
+            console.error("❌ Gửi lệnh toggle thất bại:", err);
+        }
+    };
+
 
     return (
         <span
             key={device.id || device.uuid}
             className={`flex glass-card items-center gap-3 w-full h-full p-2 justify-between`}
             style={{ height: "fit-content", backgroundColor: isOn && isOnline ? "#036AAB" : "rgb(102, 102, 102)", }}
+            onClick={handleClick}
         >
             {/* Bên trái */}
             <span className="flex flex-col justify-between h-full w-full">
@@ -139,7 +176,7 @@ const DeviceCard = ({ device, message }) => {
                         <button className={`hover:underline ${!workMode ? " text-gray-400" : "text-white"}`}>Trắng</button>
                     </span>
                     <span className="flex">
-                        {details?.result?.is_online ?
+                        {isOnline ?
                             <Wifi size={16} color="white" />
                             :
                             <WifiOff size={16} color="white" />
@@ -155,11 +192,28 @@ const DeviceCard = ({ device, message }) => {
                     key={`bright-${brightValue}`}
                     initial={brightValue ?? 0}
                 />
-                <ColorTempSlider
-                    key={`temp-${tempValue}`}
-                    initial={tempValue ?? 0}
-                />
+                {workMode ? (
+                    <ColorTempSlider
+                        key={`temp-${tempValue}`}
+                        initial={tempValue / 10 ?? 0}
+                    />
+                ) : (
+                    <HueSlider
+                        key={`temp-${colourData}`}
+                        tuyaColorValue={colourData ?? 0}
+                    />
+                )}
             </span>
         </span>
     );
+}
+
+export function decodeTuyaColor(hex) {
+    if (!hex || hex.length !== 12) return { h: 0, s: 0, v: 0 };
+
+    const h = parseInt(hex.slice(0, 4), 16);
+    const s = parseInt(hex.slice(4, 8), 16);
+    const v = parseInt(hex.slice(8, 12), 16);
+
+    return { h, s, v };
 }
