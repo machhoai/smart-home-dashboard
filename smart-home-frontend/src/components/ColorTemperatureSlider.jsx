@@ -18,7 +18,12 @@ function ColorTempSlider({ initial }) {
 
     return (
         // Thêm một container cho slider đã xoay
-        <div className="color-temp-slider-container">
+        <div className="color-temp-slider-container"
+            onClick={(e) => {
+                e.stopPropagation(); // 👈 Chặn sự kiện click nổi lên cha
+                // handleClick({ properties: { work_mode: "colour" } });
+            }}
+        >
             <input
                 type="range"
                 min="0"

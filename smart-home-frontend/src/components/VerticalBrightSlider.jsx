@@ -78,6 +78,10 @@ export default function VerticalBrightSlider({
         <div
             className="vbs-root"
             style={{ height: `${height}px`, width: `${width}px` }}
+            onClick={(e) => {
+                e.stopPropagation(); // 👈 Chặn sự kiện click nổi lên cha
+                // handleClick({ properties: { work_mode: "colour" } });
+            }}
         >
             <div
                 className="vbs-track"

@@ -49,6 +49,10 @@ function HueSlider({ tuyaColorValue }) {
 
     return (
         <div className="hue-slider-container"
+            onClick={(e) => {
+                e.stopPropagation(); // 👈 Chặn sự kiện click nổi lên cha
+                // handleClick({ properties: { work_mode: "colour" } });
+            }}
         >
             <input
                 type="range"
