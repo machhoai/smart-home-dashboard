@@ -51,8 +51,8 @@ const tuyaClient = startTuyaPush({
     accessId: '97djrgkesmtjarecadhu',
     accessKey: '99a76409afc9436f98cc954be74b2a07',
     url: "wss://mqe.tuyaus.com:8285/",
-    env: "test",
-    subscriptionId: '97djrgkesmtjarecadhu-sub',
+    env: "prod",
+    subscriptionId: '97djrgkesmtjarecadhu-sub-iot-web',
     onMessage: (msg) => {
         sendToClients(msg);
     }
