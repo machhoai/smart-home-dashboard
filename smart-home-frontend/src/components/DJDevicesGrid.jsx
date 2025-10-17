@@ -147,10 +147,19 @@ const DeviceCard = ({ device, message }) => {
         // API của Tuya cần giá trị từ 10-1000, nên ta nhân với 10
         const tuyaValue = newBrightness * 10;
 
-        // Gọi hàm handleClick đã có sẵn để gửi lệnh
-        handleClick({ properties: { switch_led: true } })
-        handleClick({ properties: { bright_value: tuyaValue } });
-        handleClick({ properties: { bright_value_v2: tuyaValue } });
+        if (tuyaValue == 0) {
+            // Gọi hàm handleClick đã có sẵn để gửi lệnh
+            handleClick({ properties: { switch_led: true } })
+            handleClick({ properties: { bright_value: 10 } });
+            handleClick({ properties: { bright_value_v2: 10 } });
+        } else {
+            // Gọi hàm handleClick đã có sẵn để gửi lệnh
+            handleClick({ properties: { switch_led: true } })
+            handleClick({ properties: { bright_value: tuyaValue } });
+            handleClick({ properties: { bright_value_v2: tuyaValue } });
+        }
+
+
     };
 
     return (
