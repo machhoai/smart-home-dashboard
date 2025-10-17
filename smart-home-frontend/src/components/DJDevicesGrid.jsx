@@ -149,12 +149,10 @@ const DeviceCard = ({ device, message }) => {
 
         if (tuyaValue == 0) {
             // Gọi hàm handleClick đã có sẵn để gửi lệnh
-            handleClick({ properties: { switch_led: true } })
             handleClick({ properties: { bright_value: 10 } });
             handleClick({ properties: { bright_value_v2: 10 } });
         } else {
             // Gọi hàm handleClick đã có sẵn để gửi lệnh
-            handleClick({ properties: { switch_led: true } })
             handleClick({ properties: { bright_value: tuyaValue } });
             handleClick({ properties: { bright_value_v2: tuyaValue } });
         }
