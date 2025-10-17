@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./ColorTemperatureSlider.css";
 
-function ColorTempSlider({ initial }) {
+function ColorTempSlider({ initial, onChange }) {
     const [tempColor, setTempColor] = useState(initial);
     // console.log(tempColor);
 
@@ -12,7 +12,7 @@ function ColorTempSlider({ initial }) {
         setTempColor(val);
         clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
-            console.log("Call API with:", val);
+            onChange({ properties: { temp_value: val * 10 } })
         }, 200);
     };
 

@@ -142,6 +142,17 @@ const DeviceCard = ({ device, message }) => {
     };
     //switch_led: newValue,
 
+    const handleBrightnessChange = (newBrightness) => {
+        // Slider trả về giá trị từ 0-100
+        // API của Tuya cần giá trị từ 10-1000, nên ta nhân với 10
+        const tuyaValue = newBrightness * 10;
+
+        // Gọi hàm handleClick đã có sẵn để gửi lệnh
+        handleClick({ properties: { switch_led: true } })
+        handleClick({ properties: { bright_value: tuyaValue } });
+        handleClick({ properties: { bright_value_v2: tuyaValue } });
+    };
+
     return (
         <span
             key={device.id || device.uuid}
@@ -210,16 +221,19 @@ const DeviceCard = ({ device, message }) => {
                 <VerticalBrightSlider
                     key={`bright-${brightValue}`}
                     initial={brightValue ?? 0}
+                    onChangeDebounced={handleBrightnessChange}
                 />
                 {workMode ? (
                     <ColorTempSlider
                         key={`temp-${tempValue}`}
                         initial={tempValue / 10 ?? 0}
+                        onChange={handleClick}
                     />
                 ) : (
                     <HueSlider
                         key={`temp-${colourData}`}
                         tuyaColorValue={colourData ?? 0}
+                        onChange={handleClick}
                     />
                 )}
             </span>

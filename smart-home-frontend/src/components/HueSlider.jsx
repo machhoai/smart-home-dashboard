@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./HueSlider.css";
 
-function HueSlider({ tuyaColorValue }) {
+function HueSlider({ tuyaColorValue, onChange }) {
     // console.log(tuyaColorValue);
 
     const [hue, setHue] = useState(0);
@@ -35,15 +35,20 @@ function HueSlider({ tuyaColorValue }) {
         clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
             const payload = {
-                code: "colour_data_v2",
-                value: JSON.stringify({
+                code: "colour_data_v2", // dùng đúng code luôn ở đây cho rõ
+                value: {
                     h: val,
-                    s: 1000, // có thể giữ nguyên hoặc chỉnh
-                    v: 261,  // có thể giữ nguyên hoặc chỉnh
-                }),
+                    s: 1000, // điều chỉnh nếu cần
+                    v: 261,  // điều chỉnh nếu cần
+                },
             };
-            console.log("Gửi payload Tuya:", payload);
-            // 👉 ở đây bạn gọi API updateStatus(payload)
+
+            // ✅ Gửi đúng format
+            onChange({
+                properties: {
+                    [payload.code]: payload.value, // Tuya cần value là object, không stringify
+                }
+            });
         }, 200);
     };
 
